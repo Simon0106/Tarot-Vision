@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
-import CardDraw from '@/components/CardDraw'
-import Reading from '@/components/Reading'
+import CardDraw from './components/CardDraw'
+import Reading from './components/Reading'
 
 export default function Home() {
   const [screen, setScreen] = useState('home')
