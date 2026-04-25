@@ -1,3 +1,5 @@
+import './globals.css'
+
 export const metadata = {
   title: 'Tarot-Vision',
   description: 'Contextual tarot readings',
