@@ -32,7 +32,7 @@ export default function Home() {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="fade-in">
       <h1 style={{ fontSize: '28px', fontWeight: '500', marginBottom: '0.5rem', textAlign: 'center' }}>
         Tarot-Vision
       </h1>
@@ -41,7 +41,7 @@ export default function Home() {
       </p>
 
       {screen === 'home' && (
-        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }} className="fade-in">
           <div style={{ marginBottom: '3rem' }}>
             <p style={{ 
               fontSize: '18px', 
@@ -106,11 +106,13 @@ export default function Home() {
       )}
 
       {screen === 'draw' && !loading && (
-        <CardDraw onComplete={handleDrawComplete} />
+        <div className="fade-in">
+          <CardDraw onComplete={handleDrawComplete} />
+        </div>
       )}
 
       {loading && (
-        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+        <div style={{ textAlign: 'center', padding: '4rem 0' }} className="fade-in">
           <div style={{
             width: '60px',
             height: '60px',
@@ -132,11 +134,13 @@ export default function Home() {
       )}
 
       {screen === 'reading' && readingData && (
-        <Reading 
-          cards={readingData.cards} 
-          reading={readingData.reading}
-          onDrawAgain={handleDrawAgain}
-        />
+        <div className="fade-in">
+          <Reading 
+            cards={readingData.cards} 
+            reading={readingData.reading}
+            onDrawAgain={handleDrawAgain}
+          />
+        </div>
       )}
     </div>
   )
