@@ -9,9 +9,11 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(135deg, #0f0c29 0%, #1a1535 50%, #24243e 100%);
+  background-size: 200% 200%;
   background-attachment: fixed;
   color: #e8e8f0;
   min-height: 100vh;
+  animation: gradientShift 15s ease infinite;
 }
 
 h1, h2, h3 {
@@ -100,4 +102,34 @@ ul, ol {
 
 li {
   margin-bottom: 0.5rem;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.card-container {
+  transition: all 0.3s ease;
+}
+
+.card-container:hover {
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+  transform: translateY(-4px);
 }
