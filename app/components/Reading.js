@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 export default function Reading({ cards, reading, onDrawAgain }) {
   const [followUps, setFollowUps] = useState([])
@@ -39,7 +40,6 @@ export default function Reading({ cards, reading, onDrawAgain }) {
       </h2>
       
       <div style={{ 
-        whiteSpace: 'pre-line', 
         lineHeight: '1.8', 
         marginBottom: '2.5rem',
         background: 'rgba(255, 255, 255, 0.03)',
@@ -48,7 +48,7 @@ export default function Reading({ cards, reading, onDrawAgain }) {
         border: '1px solid rgba(212, 175, 55, 0.2)',
         fontSize: '15px'
       }}>
-        {reading}
+        <ReactMarkdown>{reading}</ReactMarkdown>
       </div>
 
       {followUps.map((fu, i) => (
@@ -71,10 +71,9 @@ export default function Reading({ cards, reading, onDrawAgain }) {
           <div style={{ 
             fontSize: '14px', 
             opacity: 0.95, 
-            lineHeight: '1.7',
-            whiteSpace: 'pre-line'
+            lineHeight: '1.7'
           }}>
-            {fu.answer}
+            <ReactMarkdown>{fu.answer}</ReactMarkdown>
           </div>
         </div>
       ))}
