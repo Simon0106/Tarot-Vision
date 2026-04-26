@@ -1,0 +1,41 @@
+<svg width="300" height="500" viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="backGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0f2e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2d1b4e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a0f2e;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="stars" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="25" cy="25" r="1" fill="#d4af37" opacity="0.3"/>
+      <circle cx="10" cy="10" r="0.5" fill="#d4af37" opacity="0.2"/>
+      <circle cx="40" cy="15" r="0.5" fill="#d4af37" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="500" fill="url(#backGradient)" rx="15"/>
+  <rect width="300" height="500" fill="url(#stars)" rx="15" opacity="0.5"/>
+  
+  <!-- Border -->
+  <rect x="10" y="10" width="280" height="480" fill="none" stroke="#d4af37" stroke-width="3" rx="12"/>
+  <rect x="20" y="20" width="260" height="460" fill="none" stroke="#d4af37" stroke-width="1" rx="10" opacity="0.5"/>
+  
+  <!-- Central moon and stars design -->
+  <circle cx="150" cy="250" r="60" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+  <circle cx="150" cy="250" r="50" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Crescent moon -->
+  <path d="M 150 200 Q 180 225 150 250 Q 180 275 150 300 Q 140 275 140 250 Q 140 225 150 200 Z" fill="#d4af37" opacity="0.3"/>
+  
+  <!-- Stars around -->
+  <text x="150" y="180" font-size="20" fill="#d4af37" text-anchor="middle" opacity="0.5">✦</text>
+  <text x="150" y="330" font-size="20" fill="#d4af37" text-anchor="middle" opacity="0.5">✦</text>
+  <text x="90" y="255" font-size="20" fill="#d4af37" text-anchor="middle" opacity="0.5">✦</text>
+  <text x="210" y="255" font-size="20" fill="#d4af37" text-anchor="middle" opacity="0.5">✦</text>
+  
+  <!-- Corner ornaments -->
+  <text x="40" y="50" font-size="16" fill="#d4af37" opacity="0.4">✦</text>
+  <text x="260" y="50" font-size="16" fill="#d4af37" opacity="0.4">✦</text>
+  <text x="40" y="470" font-size="16" fill="#d4af37" opacity="0.4">✦</text>
+  <text x="260" y="470" font-size="16" fill="#d4af37" opacity="0.4">✦</text>
+</svg>
