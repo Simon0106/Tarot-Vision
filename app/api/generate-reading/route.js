@@ -26,10 +26,17 @@ export async function POST(request) {
     })
 
     const data = await response.json()
+    
+    if (!response.ok) {
+      console.error('Anthropic API error:', data)
+      return NextResponse.json({ error: data.error?.message || 'API error' }, { status: 500 })
+    }
+    
     const reading = data.content[0].text
 
     return NextResponse.json({ reading })
   } catch (error) {
+    console.error('Server error:', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
