@@ -41,13 +41,67 @@ export default function Home() {
       </p>
 
       {screen === 'home' && (
-        <div style={{ textAlign: 'center' }}>
-          <button onClick={handlePayment} style={{ padding: '16px 32px', fontSize: '16px' }}>
-            Draw Cards (£1.99)
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '3rem' }}>
+            <p style={{ 
+              fontSize: '18px', 
+              lineHeight: '1.8', 
+              marginBottom: '2rem',
+              color: '#c9c9d8'
+            }}>
+              Get personalized tarot readings powered by deep intuition and context. 
+              Draw your cards, share your situation, and receive insights tailored to your life.
+            </p>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(3, 1fr)', 
+              gap: '1.5rem',
+              marginBottom: '3rem',
+              textAlign: 'center'
+            }}>
+              <div>
+                <div style={{ fontSize: '32px', marginBottom: '0.5rem' }}>🎴</div>
+                <div style={{ fontSize: '14px', color: '#d4af37', fontFamily: 'Cinzel, serif' }}>
+                  Draw Cards
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: '32px', marginBottom: '0.5rem' }}>💬</div>
+                <div style={{ fontSize: '14px', color: '#d4af37', fontFamily: 'Cinzel, serif' }}>
+                  Add Context
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: '32px', marginBottom: '0.5rem' }}>✨</div>
+                <div style={{ fontSize: '14px', color: '#d4af37', fontFamily: 'Cinzel, serif' }}>
+                  Get Insights
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button onClick={handlePayment} style={{ padding: '18px 48px', fontSize: '18px' }}>
+            ✨ Begin Reading
           </button>
-          <p style={{ fontSize: '12px', opacity: 0.5, marginTop: '0.5rem' }}>
-            Payment coming soon - free for now
+          <p style={{ fontSize: '13px', opacity: 0.5, marginTop: '1rem' }}>
+            Free while in beta
           </p>
+
+          <div style={{ 
+            marginTop: '4rem', 
+            paddingTop: '2rem', 
+            borderTop: '1px solid rgba(212, 175, 55, 0.2)',
+            fontSize: '12px',
+            opacity: 0.6,
+            lineHeight: '1.8'
+          }}>
+            <p style={{ marginBottom: '0.5rem' }}>
+              Tarot readings are for entertainment and reflection purposes only.
+            </p>
+            <p>
+              © 2026 Tarot-Vision • Created by S.R. Moore
+            </p>
+          </div>
         </div>
       )}
 
