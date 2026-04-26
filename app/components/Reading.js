@@ -27,43 +27,82 @@ export default function Reading({ cards, reading, onDrawAgain }) {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h2 style={{ fontSize: '18px', fontWeight: '500', marginBottom: '1rem' }}>Your Reading</h2>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <h2 style={{ 
+        fontSize: '28px', 
+        fontWeight: '500', 
+        marginBottom: '2rem',
+        textAlign: 'center',
+        fontFamily: 'Cinzel, serif'
+      }}>
+        ✨ Your Reading
+      </h2>
       
-      <div style={{ whiteSpace: 'pre-line', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+      <div style={{ 
+        whiteSpace: 'pre-line', 
+        lineHeight: '1.8', 
+        marginBottom: '2.5rem',
+        background: 'rgba(255, 255, 255, 0.03)',
+        padding: '2rem',
+        borderRadius: '16px',
+        border: '1px solid rgba(212, 175, 55, 0.2)',
+        fontSize: '15px'
+      }}>
         {reading}
       </div>
 
       {followUps.map((fu, i) => (
-        <div key={i} style={{ background: '#2a2a3e', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
-          <div style={{ fontSize: '13px', fontWeight: '500', marginBottom: '0.5rem' }}>
-            You: {fu.question}
+        <div key={i} style={{ 
+          background: 'linear-gradient(135deg, rgba(106, 76, 147, 0.15) 0%, rgba(139, 95, 176, 0.15) 100%)',
+          border: '1px solid rgba(212, 175, 55, 0.3)',
+          borderRadius: '12px', 
+          padding: '1.5rem', 
+          marginBottom: '1.5rem' 
+        }}>
+          <div style={{ 
+            fontSize: '14px', 
+            fontWeight: '500', 
+            marginBottom: '0.75rem',
+            color: '#d4af37',
+            fontFamily: 'Cinzel, serif'
+          }}>
+            You asked: {fu.question}
           </div>
-          <div style={{ fontSize: '13px', opacity: 0.9, lineHeight: '1.6' }}>
+          <div style={{ 
+            fontSize: '14px', 
+            opacity: 0.95, 
+            lineHeight: '1.7',
+            whiteSpace: 'pre-line'
+          }}>
             {fu.answer}
           </div>
         </div>
       ))}
 
       {followUps.length < 3 && (
-        <div style={{ marginBottom: '1.5rem' }}>
-          <div style={{ fontSize: '13px', opacity: 0.7, marginBottom: '0.5rem' }}>
-            {3 - followUps.length} follow-up {3 - followUps.length === 1 ? 'message' : 'messages'} remaining
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{ 
+            fontSize: '13px', 
+            opacity: 0.6, 
+            marginBottom: '0.75rem',
+            fontStyle: 'italic'
+          }}>
+            {3 - followUps.length} follow-up {3 - followUps.length === 1 ? 'question' : 'questions'} remaining
           </div>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a follow-up question..."
-            style={{ minHeight: '60px', marginBottom: '0.5rem' }}
+            style={{ minHeight: '80px', marginBottom: '0.75rem', fontSize: '14px' }}
           />
           <button onClick={sendFollowUp} disabled={!input.trim() || loading} style={{ width: '100%' }}>
-            {loading ? 'Thinking...' : 'Send'}
+            {loading ? '🔮 Consulting the cards...' : '💫 Ask Question'}
           </button>
         </div>
       )}
 
-      <button onClick={onDrawAgain} style={{ width: '100%', marginTop: '1rem' }}>
-        Draw Again (£1.99)
+      <button onClick={onDrawAgain} style={{ width: '100%', marginTop: '1.5rem', fontSize: '16px' }}>
+        🎴 Draw Again (£1.99)
       </button>
     </div>
   )
