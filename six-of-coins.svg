@@ -31,7 +31,7 @@
   <text x="150" y="80" font-family="Arial, sans-serif" font-size="40" fill="#d4af37" text-anchor="middle" opacity="0.4">⭐</text>
   
   <!-- Card name -->
-  <text x="150" y="240" font-family="'Cinzel', serif" font-size="24" fill="#d4af37" text-anchor="middle" font-weight="500" filter="url(#glow)">Six of Coins</text>
+  <text x="150" y="240" font-family="'Cinzel', serif" font-size="24" fill="#d4af37" text-anchor="middle" font-weight="500" filter="url(#glow)">Two of Coins</text>
   
   <!-- Bottom symbol -->
   <text x="150" y="440" font-family="Arial, sans-serif" font-size="40" fill="#d4af37" text-anchor="middle" opacity="0.4">⭐</text>
