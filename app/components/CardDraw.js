@@ -27,7 +27,7 @@ export default function CardDraw({ onComplete }) {
   }
 
   const getCardImagePath = (cardName) => {
-    return `/tarot-svg-cards/${cardName.toLowerCase().replace(/\s+/g, '-')}.svg`
+    return `/${cardName.toLowerCase().replace(/\s+/g, '-')}.svg`
   }
 
   if (cards.length === 0) {
@@ -64,7 +64,7 @@ export default function CardDraw({ onComplete }) {
                 : '0 4px 15px rgba(0, 0, 0, 0.3)',
             }}>
               <img 
-                src={revealed.includes(i) ? getCardImagePath(card.name) : '/tarot-svg-cards/card-back.svg'}
+                src={revealed.includes(i) ? getCardImagePath(card.name) : '/card-back.svg'}
                 alt={revealed.includes(i) ? card.name : 'Card back'}
                 style={{
                   width: '100%',
