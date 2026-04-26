@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { TAROT_CARDS, CARD_LOOKS } from '@/lib/cards'
+import { TAROT_CARDS, CARD_LOOKS } from '../../lib/cards'
 
 export default function CardDraw({ onComplete }) {
   const [cards, setCards] = useState([])
