@@ -1,4 +1,3 @@
-//v2
 'use client'
 import { useState } from 'react'
 import CardDraw from './components/CardDraw'
@@ -10,8 +9,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
 
   const handlePayment = async () => {
-    // For now, skip payment and go straight to draw
-    // We'll add Stripe later
     setScreen('draw')
   }
 
@@ -58,7 +55,27 @@ export default function Home() {
         <CardDraw onComplete={handleDrawComplete} />
       )}
 
-      {loading && <div style={{ textAlign: 'center' }}>Generating your reading...</div>}
+      {loading && (
+        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+          <div style={{
+            width: '60px',
+            height: '60px',
+            margin: '0 auto 1.5rem',
+            border: '4px solid rgba(212, 175, 55, 0.2)',
+            borderTop: '4px solid #d4af37',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }}></div>
+          <div style={{ 
+            fontSize: '16px', 
+            color: '#d4af37',
+            fontFamily: 'Cinzel, serif',
+            letterSpacing: '2px'
+          }}>
+            Consulting the cards...
+          </div>
+        </div>
+      )}
 
       {screen === 'reading' && readingData && (
         <Reading 
