@@ -6,6 +6,7 @@ export default function CardDraw({ onComplete }) {
   const [cards, setCards] = useState([])
   const [revealed, setRevealed] = useState([])
   const [context, setContext] = useState('')
+  const [flipping, setFlipping] = useState([])
 
   const drawCards = () => {
     const shuffled = [...TAROT_CARDS].sort(() => Math.random() - 0.5)
@@ -16,10 +17,30 @@ export default function CardDraw({ onComplete }) {
     }))
     setCards(drawn)
     setRevealed([])
+    setFlipping([])
   }
 
   const revealCard = (i) => {
-    if (!revealed.includes(i)) setRevealed([...revealed, i])
+    if (!revealed.includes(i) && !flipping.includes(i)) {
+      setFlipping([...flipping, i])
+      setTimeout(() => {
+        setRevealed([...revealed, i])
+        setFlipping(flipping.filter(f => f !== i))
+      }, 300)
+    }
+  }
+
+  const revealAll = () => {
+    const unrevealed = [0, 1, 2].filter(i => !revealed.includes(i))
+    unrevealed.forEach((i, index) => {
+      setTimeout(() => {
+        setFlipping([...flipping, i])
+        setTimeout(() => {
+          setRevealed(prev => [...prev, i])
+          setFlipping(prev => prev.filter(f => f !== i))
+        }, 300)
+      }, index * 400)
+    })
   }
 
   const handleComplete = () => {
@@ -53,26 +74,69 @@ export default function CardDraw({ onComplete }) {
         {cards.map((card, i) => (
           <div key={i} onClick={() => revealCard(i)} style={{ cursor: 'pointer', textAlign: 'center' }}>
             <div style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderRadius: '16px',
-              padding: '0.5rem',
+              perspective: '1000px',
               marginBottom: '1rem',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              transform: revealed.includes(i) ? 'scale(1.02)' : 'scale(1)',
-              boxShadow: revealed.includes(i) 
-                ? '0 8px 30px rgba(212, 175, 55, 0.3)' 
-                : '0 4px 15px rgba(0, 0, 0, 0.3)',
             }}>
-              <img 
-                src={revealed.includes(i) ? getCardImagePath(card.name) : '/cards/card-back.svg'}
-                alt={revealed.includes(i) ? card.name : 'Card back'}
-                style={{
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                paddingBottom: '167%',
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.6s',
+                transform: revealed.includes(i) || flipping.includes(i) ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              }}>
+                {/* Card back */}
+                <div style={{
+                  position: 'absolute',
                   width: '100%',
-                  height: 'auto',
-                  borderRadius: '12px',
-                  display: 'block'
-                }}
-              />
+                  height: '100%',
+                  backfaceVisibility: 'hidden',
+                  borderRadius: '16px',
+                  padding: '0.5rem',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                }}>
+                  <img 
+                    src="/cards/card-back.svg"
+                    alt="Card back"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '12px',
+                      display: 'block',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+
+                {/* Card front */}
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  backfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  borderRadius: '16px',
+                  padding: '0.5rem',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  boxShadow: revealed.includes(i) 
+                    ? '0 8px 30px rgba(212, 175, 55, 0.3)' 
+                    : '0 4px 15px rgba(0, 0, 0, 0.3)',
+                }}>
+                  <img 
+                    src={getCardImagePath(card.name)}
+                    alt={card.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '12px',
+                      display: 'block',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+              </div>
+
               {revealed.includes(i) && (
                 <div style={{ 
                   marginTop: '0.75rem',
@@ -85,6 +149,7 @@ export default function CardDraw({ onComplete }) {
                 </div>
               )}
             </div>
+
             <div style={{ 
               fontSize: '13px', 
               opacity: 0.6,
@@ -100,7 +165,7 @@ export default function CardDraw({ onComplete }) {
       </div>
 
       {revealed.length < 3 && (
-        <button onClick={() => setRevealed([0, 1, 2])} style={{ marginBottom: '1rem', width: '100%' }}>
+        <button onClick={revealAll} style={{ marginBottom: '1rem', width: '100%' }}>
           ✨ Reveal All
         </button>
       )}
