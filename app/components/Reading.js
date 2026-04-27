@@ -27,6 +27,29 @@ export default function Reading({ cards, reading, onDrawAgain }) {
     setLoading(false)
   }
 
+  const handleShare = async () => {
+    const cardNames = cards.map(c => c.name).join(', ')
+    const shareText = `I just got a tarot reading on Tarot-Vision!\n\nMy cards: ${cardNames}\n\nGet your own reading at:`
+    const shareUrl = window.location.origin
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Tarot Reading',
+          text: shareText,
+          url: shareUrl
+        })
+      } catch (err) {
+        console.log('Share cancelled or failed')
+      }
+    } else {
+      // Fallback: copy to clipboard
+      const fullText = `${shareText} ${shareUrl}`
+      navigator.clipboard.writeText(fullText)
+      alert('Link copied to clipboard!')
+    }
+  }
+
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto' }}>
       <h2 style={{ 
@@ -100,9 +123,14 @@ export default function Reading({ cards, reading, onDrawAgain }) {
         </div>
       )}
 
-      <button onClick={onDrawAgain} style={{ width: '100%', marginTop: '1.5rem', fontSize: '16px' }}>
-        🎴 Draw Again (£1.99)
-      </button>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
+        <button onClick={handleShare} style={{ fontSize: '15px' }}>
+          📤 Share Reading
+        </button>
+        <button onClick={onDrawAgain} style={{ fontSize: '15px' }}>
+          🎴 Draw Again (£1.99)
+        </button>
+      </div>
     </div>
   )
 }
