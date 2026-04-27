@@ -7,9 +7,30 @@ export default function Home() {
   const [screen, setScreen] = useState('home')
   const [readingData, setReadingData] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [paymentLoading, setPaymentLoading] = useState(false)
 
   const handlePayment = async () => {
-    setScreen('draw')
+    setPaymentLoading(true)
+    
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ origin: window.location.origin })
+      })
+      
+      const data = await res.json()
+      
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        console.error('No checkout URL returned')
+        setPaymentLoading(false)
+      }
+    } catch (error) {
+      console.error('Payment error:', error)
+      setPaymentLoading(false)
+    }
   }
 
   const handleDrawComplete = async ({ cards, context }) => {
@@ -80,12 +101,13 @@ export default function Home() {
             </div>
           </div>
 
-          <button onClick={handlePayment} style={{ padding: '18px 48px', fontSize: '18px' }}>
-            ✨ Begin Reading
+          <button 
+            onClick={handlePayment} 
+            disabled={paymentLoading}
+            style={{ padding: '18px 48px', fontSize: '18px' }}
+          >
+            {paymentLoading ? '🔮 Processing...' : '✨ Begin Reading (£1.99)'}
           </button>
-          <p style={{ fontSize: '13px', opacity: 0.5, marginTop: '1rem' }}>
-            Free while in beta
-          </p>
 
           <div style={{ 
             marginTop: '4rem', 
