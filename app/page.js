@@ -120,8 +120,11 @@ export default function Home() {
             <p style={{ marginBottom: '0.5rem' }}>
               Tarot readings are for entertainment and reflection purposes only.
             </p>
-            <p>
+            <p style={{ marginBottom: '0.5rem' }}>
               © 2026 Tarot-Vision • Created by S.R. Moore
+            </p>
+            <p style={{ fontSize: '11px', opacity: 0.5 }}>
+              Card artwork by <a href="https://goldydesignandcreatives.my.canva.site/" target="_blank" rel="noopener noreferrer" style={{ color: '#d4af37', textDecoration: 'none' }}>Goldy Designs</a>
             </p>
           </div>
         </div>
