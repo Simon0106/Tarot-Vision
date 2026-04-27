@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CardDraw from '../components/CardDraw'
 import Reading from '../components/Reading'
 
-export default function SuccessPage() {
+function SuccessContent() {
   const [screen, setScreen] = useState('draw')
   const [readingData, setReadingData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -30,14 +30,7 @@ export default function SuccessPage() {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="fade-in">
-      <h1 style={{ fontSize: '28px', fontWeight: '500', marginBottom: '0.5rem', textAlign: 'center' }}>
-        Tarot-Vision
-      </h1>
-      <p style={{ fontSize: '14px', opacity: 0.7, marginBottom: '2rem', textAlign: 'center' }}>
-        Contextual tarot readings
-      </p>
-
+    <>
       {screen === 'draw' && !loading && (
         <div className="fade-in">
           <div style={{ 
@@ -88,6 +81,23 @@ export default function SuccessPage() {
           />
         </div>
       )}
+    </>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="fade-in">
+      <h1 style={{ fontSize: '28px', fontWeight: '500', marginBottom: '0.5rem', textAlign: 'center' }}>
+        Tarot-Vision
+      </h1>
+      <p style={{ fontSize: '14px', opacity: 0.7, marginBottom: '2rem', textAlign: 'center' }}>
+        Contextual tarot readings
+      </p>
+
+      <Suspense fallback={<div style={{ textAlign: 'center' }}>Loading...</div>}>
+        <SuccessContent />
+      </Suspense>
     </div>
   )
 }
